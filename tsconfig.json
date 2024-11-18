@@ -18,7 +18,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",  // Base para resolver os caminhos
+    "paths": {
+      "@assets/": ["assets/"],         
+      "@components/": ["components/"],    
+      "@routes/": ["routes/"],            
+      "@pages/": ["pages/"],              
+      "@storage/": ["storage/"],            
+      "@utils/": ["utils/"],                 
+      "@hooks/": ["hooks/"],                
+      "@constants/": ["constants/"],        
+      "@types/": ["types/"],                
+      "@themes/": ["themes/"],               
+      "@services/": ["services/"],           
+      "@contexts/": ["contexts/"],           
+      "@translations/": ["translations/"]    
+    }
   },
   "include": [
     "src"

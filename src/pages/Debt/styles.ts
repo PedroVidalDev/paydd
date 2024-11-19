@@ -60,7 +60,6 @@ export const Button = styled.button`
 
     &:hover{
         ${({theme}) => css`
-            background-color: ${theme.COLORS.SECUNDARY_DARK};
             color: ${theme.COLORS.SECUNDARY_LIGHT};
         `}
     }

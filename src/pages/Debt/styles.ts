@@ -32,16 +32,6 @@ export const ContainerInputs = styled.div`
     gap: 10px;
 `
 
-export const Input = styled.input`
-    width: 100%;
-    height: 100%;
-
-    border-radius: 10px;
-    border: 0;
-    
-    padding: 15px;
-`
-
 export const Button = styled.button`
     min-width: 40px;
     min-height: 100%;

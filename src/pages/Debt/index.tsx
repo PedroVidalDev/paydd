@@ -1,5 +1,6 @@
 import { RegisterContainer } from "components/RegisterContainer"
-import { Button, Container, ContainerInputs, ContainerTitle, Input } from "./styles"
+import { Button, Container, ContainerInputs, ContainerTitle } from "./styles"
+import { Input } from "components/Input";
 
 export const Debt = () => {
 

@@ -5,11 +5,25 @@ export const Container = styled.div`
 
     justify-content: space-between;
 
-    padding-bottom: 10px;
+    padding: 10px 10px;
     
     border-bottom: 1px solid black;
+
+    cursor: pointer;
+
+    transition: 0.5s;
+
+    &:hover{
+        background-color: ${({theme}) => theme.COLORS.NEUTRAL_400};
+    }
+
+    &:hover p{
+        transform: scale(105%);
+    }
 `
 
 export const ContainerText = styled.p`
     font-size: ${({theme}) => theme.FONT_SIZE.NORMAL}px;
+
+    transition: 0.5s;
 `

@@ -42,9 +42,9 @@ export const Input = styled.input`
     padding: 15px;
 `
 
-export const CreateButton = styled.button`
-    width: 40px;
-    height: 100%;
+export const Button = styled.button`
+    min-width: 40px;
+    min-height: 100%;
 
     border-radius: 10px;
     border: 0;

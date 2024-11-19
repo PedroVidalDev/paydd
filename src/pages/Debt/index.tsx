@@ -1,5 +1,5 @@
 import { RegisterContainer } from "components/RegisterContainer"
-import { Container, ContainerInputs, ContainerTitle, CreateButton, Input } from "./styles"
+import { Button, Container, ContainerInputs, ContainerTitle, Input } from "./styles"
 
 export const Debt = () => {
 
@@ -42,7 +42,8 @@ export const Debt = () => {
             <ContainerTitle> Débitos </ContainerTitle>
             <ContainerInputs>
                 <Input placeholder="Digite o nome aqui..." />
-                <CreateButton> + </CreateButton>
+                <Button> + </Button>
+                <Button> H </Button>
             </ContainerInputs>
             <RegisterContainer textsList={listaExemplo} />
         </Container>

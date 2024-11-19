@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+import { MenuType } from "./types";
+
+interface ContainerProps {
+    type: MenuType
+}
+
+export const Container = styled.div<ContainerProps>`
     display: flex;
 
     width: 100%;
@@ -8,7 +14,7 @@ export const Container = styled.div`
 
     border-radius: 15px 15px 0 0;
 
-    background-color: ${({theme}) => theme.COLORS.SECUNDARY_DARK};
+    background-color: ${({theme, type}) => type == MenuType.DEBT ? theme.COLORS.SECUNDARY_DARK : theme.COLORS.PRIMARY_DARK};
 `
 
 export const IconContainerLeft = styled.div`
@@ -18,6 +24,11 @@ export const IconContainerLeft = styled.div`
     height: 100%;
 
     border-radius: 15px 0 0 0;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
 
     transition: 0.5s;
 
@@ -34,9 +45,19 @@ export const IconContainerRight = styled.div`
 
     border-radius: 0 15px 0 0;
 
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
     transition: 0.5s;
 
     &:hover{
         background-color: ${({theme}) => theme.COLORS.SECUNDARY_LIGHT};
     }
+`
+
+export const Icon = styled.img`
+    width: 40px;
+    height: 50px;
 `

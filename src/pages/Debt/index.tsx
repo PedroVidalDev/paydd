@@ -6,10 +6,36 @@ export const Debt = () => {
     const listaExemplo = [
         [
             "Nata",
-            "blowjob",
+            "Burger King",
             "R$ 23,33"
+        ],
+        [
+            "João",
+            "Starbucks",
+            "R$ 18,50"
+        ],
+        [
+            "Ana",
+            "Subway",
+            "R$ 12,90"
+        ],
+        [
+            "Carlos",
+            "McDonald's",
+            "R$ 27,45"
+        ],
+        [
+            "Maria",
+            "Pizza Hut",
+            "R$ 35,60"
+        ],
+        [
+            "Pedro",
+            "Dominos",
+            "R$ 40,20"
         ]
-    ]
+    ];
+    
 
     return (
         <Container>

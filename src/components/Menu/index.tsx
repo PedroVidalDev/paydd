@@ -14,6 +14,10 @@ export const Menu = () => {
         setType(newType)
     }
 
+    useEffect(() => {
+        console.log('Type changed:', type);
+      }, [type]);
+
     return (
         <Container type={type as MenuType}>
             <IconContainerLeft onClick={() => handleTypeChange(MenuType.CREDIT)}>

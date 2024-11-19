@@ -10,7 +10,7 @@ export const Container = styled.div<MenuProps>`
 
     border-radius: 15px 15px 0 0;
 
-    background-color: ${({theme, type}) => type == MenuType.DEBT ? theme.COLORS.SECUNDARY_DARK : theme.COLORS.PRIMARY_DARK};
+    background-color: ${({theme, type}) => type === MenuType.DEBT ? theme.COLORS.SECUNDARY_DARK : theme.COLORS.PRIMARY_DARK};
 `
 
 export const IconContainerLeft = styled.div`

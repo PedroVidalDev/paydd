@@ -11,6 +11,8 @@ export const Container = styled.div<MenuProps>`
     border-radius: 15px 15px 0 0;
 
     background-color: ${({theme, type}) => type === MenuType.DEBT ? theme.COLORS.SECUNDARY_DARK : theme.COLORS.PRIMARY_DARK};
+
+    transition: 0.5s;
 `
 
 export const IconContainerLeft = styled.div`

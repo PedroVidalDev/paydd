@@ -6,14 +6,17 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
+
+        font-family: "Kulim Park", sans-serif;
+
     }
 
     html{
         font-size: 62.5%;
     }
 
-    body {
-        font-family: 'Roboto', sans-serif;
+    input:focus-visible{
+        outline: none;
     }
 
     #root{

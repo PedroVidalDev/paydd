@@ -1,7 +1,7 @@
 import { Button, Container, ContainerInputs, ContainerTitle } from "./styles"
 import { Input } from "components/Input";
 
-export const Debt = () => {
+export const DebtCreate = () => {
     return (
         <Container>
             <ContainerTitle> Débitos </ContainerTitle>

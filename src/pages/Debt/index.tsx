@@ -1,6 +1,7 @@
 import { RegisterContainer } from "components/RegisterContainer"
 import { Button, Container, ContainerInputs, ContainerTitle } from "./styles"
 import { Input } from "components/Input";
+import { useNavigate } from "react-router";
 
 export const Debt = () => {
 
@@ -36,6 +37,12 @@ export const Debt = () => {
             "R$ 40,20"
         ]
     ];
+
+    const navigate = useNavigate()
+
+    const handleViewCreate = () => {
+        navigate('/debt/new')
+    }
     
 
     return (
@@ -43,7 +50,7 @@ export const Debt = () => {
             <ContainerTitle> Débitos </ContainerTitle>
             <ContainerInputs>
                 <Input placeholder="Digite o nome aqui..." />
-                <Button> + </Button>
+                <Button onClick={handleViewCreate}> + </Button>
                 <Button> H </Button>
             </ContainerInputs>
             <RegisterContainer textsList={listaExemplo} />

@@ -7,6 +7,9 @@ export const theme = {
         SECUNDARY_MAIN: "#AA1D1D",
         SECUNDARY_LIGHT: "#fcf1f1",
         SECUNDARY_DARK: "#1D0000",
+
+        NEUTRAL: "#FAFAFA",
+        NEUTRAL_400: "#dedcdc"
     },
     FONT_SIZE: {
         SMALL: 11,

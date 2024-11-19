@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     align-items: center;
 
-    background-color: ${({theme}) => theme.COLORS.SECUNDARY_LIGHT};
+    background-color: ${({theme}) => theme.COLORS.NEUTRAL};
 `
 
 export const ContainerTitle = styled.h1`
@@ -20,7 +20,6 @@ export const ContainerTitle = styled.h1`
         font-weight: ${theme.FONT_WEIGHT.BOLDER};
         font-size: ${theme.FONT_SIZE.XLARGE}px;
     `}
-    text-shadow: 0px 0px 5px black;
     text-align: center;
 `
 

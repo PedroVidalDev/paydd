@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
-import { MenuType } from "./types";
+import { MenuProps, MenuType } from "./types";
 
-interface ContainerProps {
-    type: MenuType
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<MenuProps>`
     display: flex;
 
     width: 100%;

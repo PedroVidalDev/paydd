@@ -9,7 +9,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Debt />
-      <Menu type={MenuType.CREDIT} />
+      <Menu />
     </ThemeProvider>
   );
 }

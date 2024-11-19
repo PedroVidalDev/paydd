@@ -3,6 +3,6 @@ export type MenuProps = {
 }
 
 export enum MenuType {
-    DEBT,
-    CREDIT
+    DEBT = "debt",
+    CREDIT = "credit"
 }

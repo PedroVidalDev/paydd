@@ -10,8 +10,9 @@ export const theme = {
     },
     FONT_SIZE: {
         SMALL: 11,
-        NORMAL: 14,
-        LARGE: 18
+        NORMAL: 18,
+        LARGE: 32,
+        XLARGE: 46
     },
     FONT_WEIGHT: {
         NORMAL: 300,

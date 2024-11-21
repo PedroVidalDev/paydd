@@ -50,7 +50,7 @@ export const Debt = () => {
         <Container>
             <ContainerTitle> Débitos </ContainerTitle>
             <ContainerInputs>
-                <Input placeholder="Digite o nome aqui..." />
+                <Input hasError={false} placeholder="Digite o nome aqui..." />
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
                 <Button text="H" height={40} width={40} />
             </ContainerInputs>

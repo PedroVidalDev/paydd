@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
         font-family: "Kulim Park", sans-serif;
 
+        position: relative;
     }
 
     html{

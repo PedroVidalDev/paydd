@@ -31,26 +31,3 @@ export const ContainerInputs = styled.div`
 
     gap: 10px;
 `
-
-export const Button = styled.button`
-    min-width: 40px;
-    min-height: 100%;
-
-    border-radius: 10px;
-    border: 0;
-
-    ${({theme}) => css`
-        font-weight: ${theme.FONT_WEIGHT.BOLD};
-        font-size: ${theme.FONT_SIZE.NORMAL}px;
-    `}
-
-    cursor: pointer;
-
-    transition: 0.5s;
-
-    &:hover{
-        ${({theme}) => css`
-            color: ${theme.COLORS.SECUNDARY_LIGHT};
-        `}
-    }
-`

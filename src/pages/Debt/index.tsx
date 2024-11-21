@@ -1,7 +1,8 @@
 import { RegisterContainer } from "components/RegisterContainer"
-import { Button, Container, ContainerInputs, ContainerTitle } from "./styles"
+import { Container, ContainerInputs, ContainerTitle } from "./styles"
 import { Input } from "components/Input";
 import { useNavigate } from "react-router";
+import { Button } from "components/Button";
 
 export const Debt = () => {
 
@@ -50,8 +51,8 @@ export const Debt = () => {
             <ContainerTitle> Débitos </ContainerTitle>
             <ContainerInputs>
                 <Input placeholder="Digite o nome aqui..." />
-                <Button onClick={handleViewCreate}> + </Button>
-                <Button> H </Button>
+                <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
+                <Button text="H" height={40} width={40} />
             </ContainerInputs>
             <RegisterContainer textsList={listaExemplo} />
         </Container>

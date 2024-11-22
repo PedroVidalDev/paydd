@@ -27,7 +27,17 @@ export const DebtCreate = () => {
     }
 
     const onSubmit = (data: CreateDebtFormData) => {
-        console.log(data)
+        const actualDebtStorage = localStorage.getItem('debtList');
+
+        if (actualDebtStorage == null) {
+            localStorage.setItem('debtList', JSON.stringify([data]));
+        } else {
+            const jsonActualDebtStorage = JSON.parse(actualDebtStorage);
+            jsonActualDebtStorage.push(data);
+            localStorage.setItem('debtList', JSON.stringify(jsonActualDebtStorage));
+        }
+
+        navigate('/debt')
     }
 
     return (

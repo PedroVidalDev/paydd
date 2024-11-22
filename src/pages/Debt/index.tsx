@@ -1,50 +1,38 @@
-import { RegisterContainer } from "components/RegisterContainer"
-import { Container, ContainerInputs, ContainerTitle } from "./styles"
-import { Input } from "components/Input";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
+import { Input } from "components/Input";
 import { Button } from "components/Button";
+import { RegisterContainer } from "components/RegisterContainer"
+
+import { Container, ContainerInputs, ContainerTitle } from "./styles"
+import { DebtCompleteData } from "dto/DebtDTO";
 
 export const Debt = () => {
 
-    const listaExemplo = [
-        [
-            "Nata",
-            "Burger King",
-            "R$ 23,33"
-        ],
-        [
-            "João",
-            "Starbucks",
-            "R$ 18,50"
-        ],
-        [
-            "Ana",
-            "Subway",
-            "R$ 12,90"
-        ],
-        [
-            "Carlos",
-            "McDonald's",
-            "R$ 27,45"
-        ],
-        [
-            "Maria",
-            "Pizza Hut",
-            "R$ 35,60"
-        ],
-        [
-            "Pedro",
-            "Dominos",
-            "R$ 40,20"
-        ]
-    ];
+    const [debtList, setDebtList] = useState<DebtCompleteData[]>([]);
+
+    const getAllDebts = () => {
+        let storedDebtList = localStorage.getItem('debtList');
+
+        if (storedDebtList == null) {
+            localStorage.setItem('debtList', JSON.stringify([]));
+            storedDebtList = '[]';
+        }
+            
+        setDebtList(JSON.parse(storedDebtList));
+        console.log(debtList)
+    }
 
     const navigate = useNavigate()
 
     const handleViewCreate = () => {
         navigate('/debt/new')
     }
-    
+
+    useEffect(() => {
+        getAllDebts()
+    }, [])
 
     return (
         <Container>
@@ -54,7 +42,7 @@ export const Debt = () => {
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
                 <Button text="H" height={40} width={40} />
             </ContainerInputs>
-            <RegisterContainer textsList={listaExemplo} />
+            <RegisterContainer textsList={debtList as DebtCompleteData[]} />
         </Container>
     )
 }

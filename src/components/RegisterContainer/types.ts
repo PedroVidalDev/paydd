@@ -1,3 +1,5 @@
+import { DebtCompleteData } from "dto/DebtDTO"
+
 export type RegisterContainerProps = {
-    textsList: string[][]
+    textsList: DebtCompleteData[]
 }

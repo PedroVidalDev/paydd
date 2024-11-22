@@ -23,7 +23,11 @@ export const Container = styled.div`
 `
 
 export const ContainerText = styled.p`
+    flex: 1;
+
     font-size: ${({theme}) => theme.FONT_SIZE.NORMAL}px;
+
+    text-align: center;
 
     transition: 0.5s;
 `

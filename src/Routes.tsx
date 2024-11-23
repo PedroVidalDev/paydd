@@ -1,3 +1,4 @@
+import { Credit } from "pages/Credit"
 import { Debt } from "pages/Debt"
 import { DebtCreate } from "pages/DebtCreate"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
@@ -17,6 +18,13 @@ export const AppRoutes = () => {
                     path="/debt/new"
                     element={
                         <DebtCreate />
+                    }
+                />
+                
+                <Route 
+                    path="/credit"
+                    element={
+                        <Credit />
                     }
                 />
             </Routes>

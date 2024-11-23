@@ -6,7 +6,6 @@ import { Button } from "components/Button";
 import { RegisterContainer } from "components/RegisterContainer"
 
 import { Container, ContainerInputs, ContainerTitle } from "./styles"
-import { DebtCompleteData } from "dto/DebtDTO";
 import { CreditCompleteData } from "dto/CreditDTO";
 
 export const Credit = () => {

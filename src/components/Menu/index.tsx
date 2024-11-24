@@ -5,27 +5,32 @@ import CreditIcon from "assets/img/creditIcon.svg"
 
 import { Container, Icon, IconContainerLeft, IconContainerRight } from "./styles"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
+import { useMenu } from "contexts/MenuContext"
 
 export const Menu = () => {
-    const [type, setType] = useState<MenuType>(MenuType.DEBT);
+
+    const navigate = useNavigate()
+
+    const {type, setType} = useMenu();
 
     const handleTypeChange = (newType: MenuType) => {
-        console.log(newType)
         setType(newType)
     }
 
     useEffect(() => {
-        console.log('Type changed:', type);
-      }, [type]);
+        type === MenuType.DEBT ? navigate('/debt') : navigate('/credit')
+    }, [type])
 
     return (
         <Container type={type as MenuType}>
-            <IconContainerLeft onClick={() => handleTypeChange(MenuType.CREDIT)}>
-                <Icon src={CreditIcon} />
-            </IconContainerLeft>
-            <IconContainerRight onClick={() => handleTypeChange(MenuType.DEBT)}>
+            <IconContainerRight to={'/debt'} onClick={() => handleTypeChange(MenuType.DEBT)}>
                 <Icon src={DebtIcon} />
             </IconContainerRight>
+
+            <IconContainerLeft to={'/credit'} onClick={() => handleTypeChange(MenuType.CREDIT)}>
+                <Icon src={CreditIcon} />
+            </IconContainerLeft>
         </Container>
     )
 }

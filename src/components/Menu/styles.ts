@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { MenuProps, MenuType } from "./types";
+import { NavLink } from "react-router-dom";
 
 export const Container = styled.div<MenuProps>`
     display: flex;
@@ -15,7 +16,7 @@ export const Container = styled.div<MenuProps>`
     transition: 0.5s;
 `
 
-export const IconContainerLeft = styled.div`
+export const IconContainerLeft = styled(NavLink)`
     display: flex;
 
     flex: 1;
@@ -35,7 +36,7 @@ export const IconContainerLeft = styled.div`
     }
 `
 
-export const IconContainerRight = styled.div`
+export const IconContainerRight = styled(NavLink)`
     display: flex;
 
     flex: 1;

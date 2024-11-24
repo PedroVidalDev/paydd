@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 interface ContainerProps {
     width: number
     height: number
+    type: 'debt' | 'credit' | 'neutral'
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -22,8 +23,8 @@ export const Container = styled.button<ContainerProps>`
     transition: 0.5s;
 
     &:hover{
-        ${({theme}) => css`
-            background-color: ${theme.COLORS.SECUNDARY_LIGHT};
+        ${({theme, type}) => css`
+            background-color: ${type === 'debt' ? theme.COLORS.SECUNDARY_LIGHT : theme.COLORS.PRIMARY_LIGHT};
             transform: scale(105%);
         `}
     }

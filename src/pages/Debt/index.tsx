@@ -25,17 +25,19 @@ export const Debt = () => {
 
     const watchName = watch('name');
 
-    const getAllDebts = () => {
+    const getAllDebts = useCallback(() => {
         let storedDebtList = localStorage.getItem('debtList');
 
         if (storedDebtList == null) {
             localStorage.setItem('debtList', JSON.stringify([]));
             storedDebtList = '[]';
         }
+
+        const parsedDebtList = JSON.parse(storedDebtList) as DebtCompleteData[];
             
-        setDebtList(JSON.parse(storedDebtList));
+        setDebtList(parsedDebtList.filter(debt => debt.paid == false));
         console.log(debtList)
-    }
+    }, [])
 
     const getAllDebtsFiltered = useCallback(() => {
         let storedDebtList = localStorage.getItem('debtList');
@@ -46,7 +48,7 @@ export const Debt = () => {
         }
 
         const parsedDebtList = JSON.parse(storedDebtList) as DebtCompleteData[];
-        const filteredDebtList = parsedDebtList.filter(debt => debt.name.includes(watchName));
+        const filteredDebtList = parsedDebtList.filter(debt => debt.name.includes(watchName) && debt.paid == false);
 
         setDebtList(filteredDebtList);
     }, [watchName])

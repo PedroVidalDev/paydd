@@ -18,7 +18,8 @@ export const DebtCreate = () => {
         defaultValues: {
             name: '',
             price: '',
-            reason: ''
+            reason: '',
+            paid: false
         }
     })
 

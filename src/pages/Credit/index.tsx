@@ -34,8 +34,10 @@ export const Credit = () => {
             localStorage.setItem('debtList', JSON.stringify([]));
             storedCreditList = '[]';
         }
+
+        const parsedCreditList = JSON.parse(storedCreditList) as CreditCompleteData[];
             
-        setCreditList(JSON.parse(storedCreditList));
+        setCreditList(parsedCreditList.filter(credit => credit.paid == false));
     }
 
     const getAllCreditsFiltered = useCallback(() => {
@@ -47,7 +49,7 @@ export const Credit = () => {
         }
 
         const parsedCreditList = JSON.parse(storedCreditList) as CreditCompleteData[];
-        const filteredCreditList = parsedCreditList.filter(credit => credit.name.includes(watchName));
+        const filteredCreditList = parsedCreditList.filter(credit => credit.name.includes(watchName) && credit.paid == false);
 
         setCreditList(filteredCreditList);
     }, [watchName])

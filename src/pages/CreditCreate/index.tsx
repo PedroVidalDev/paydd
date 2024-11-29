@@ -18,7 +18,8 @@ export const CreditCreate = () => {
         defaultValues: {
             name: '',
             price: '',
-            reason: ''
+            reason: '',
+            paid: false
         }
     })
 

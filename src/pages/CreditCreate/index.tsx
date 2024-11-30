@@ -9,8 +9,11 @@ import { CreateCreditFormData } from "./types";
 import { REGEX } from "constants/regex";
 
 import { Container, ContainerButtons, ContainerInputs, ContainerTitle } from "./styles"
+import { useCredit } from "hooks/useCredit";
 
 export const CreditCreate = () => {
+
+    const { fetchCreateCredit } = useCredit()
 
     const navigate = useNavigate()
 
@@ -28,17 +31,7 @@ export const CreditCreate = () => {
     }
 
     const onSubmit = (data: CreateCreditFormData) => {
-        const actualCreditStorage = localStorage.getItem('creditList');
-
-        if (actualCreditStorage == null) {
-            localStorage.setItem('creditList', JSON.stringify([data]));
-        } else {
-            const jsonActualDebtStorage = JSON.parse(actualCreditStorage);
-            jsonActualDebtStorage.push(data);
-            localStorage.setItem('creditList', JSON.stringify(jsonActualDebtStorage));
-        }
-
-        navigate('/credit')
+        fetchCreateCredit(data)
     }
 
     return (

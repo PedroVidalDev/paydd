@@ -12,8 +12,11 @@ import { CreditCompleteData } from "dto/CreditDTO";
 import { SearchFilterData } from "./types";
 import { Container, ContainerInputs, ContainerTitle } from "./styles"
 import { get } from "http";
+import { useCredit } from "hooks/useCredit";
 
 export const Credit = () => {
+
+    const { fetchGetCredits, fetchCreateCredit } = useCredit()
 
     const [creditList, setCreditList] = useState<CreditCompleteData[]>([]);
     
@@ -28,27 +31,12 @@ export const Credit = () => {
     const watchName = watch('name');
     
     const getAllCredits = () => {
-        let storedCreditList = localStorage.getItem('creditList');
-
-        if (storedCreditList == null) {
-            localStorage.setItem('debtList', JSON.stringify([]));
-            storedCreditList = '[]';
-        }
-
-        const parsedCreditList = JSON.parse(storedCreditList) as CreditCompleteData[];
-            
+        const parsedCreditList = fetchGetCredits()
         setCreditList(parsedCreditList.filter(credit => credit.paid == false));
     }
 
     const getAllCreditsFiltered = useCallback(() => {
-        let storedCreditList = localStorage.getItem('creditList');
-
-        if (storedCreditList == null) {
-            localStorage.setItem('creditList', JSON.stringify([]));
-            storedCreditList = '[]';
-        }
-
-        const parsedCreditList = JSON.parse(storedCreditList) as CreditCompleteData[];
+        const parsedCreditList = fetchGetCredits()
         const filteredCreditList = parsedCreditList.filter(credit => credit.name.includes(watchName) && credit.paid == false);
 
         setCreditList(filteredCreditList);

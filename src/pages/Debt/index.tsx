@@ -10,8 +10,11 @@ import { REGEX } from "constants/regex";
 import { SearchFilterData } from "./types";
 import { DebtCompleteData } from "dto/DebtDTO";
 import { Container, ContainerInputs, ContainerTitle } from "./styles"
+import { useDebt } from "hooks/useDebt";
 
 export const Debt = () => {
+
+    const { fetchGetDebts } = useDebt()
 
     const [debtList, setDebtList] = useState<DebtCompleteData[]>([]);
     
@@ -26,29 +29,14 @@ export const Debt = () => {
     const watchName = watch('name');
 
     const getAllDebts = useCallback(() => {
-        let storedDebtList = localStorage.getItem('debtList');
+        const parsedDebtList = fetchGetDebts()
 
-        if (storedDebtList == null) {
-            localStorage.setItem('debtList', JSON.stringify([]));
-            storedDebtList = '[]';
-        }
-
-        const parsedDebtList = JSON.parse(storedDebtList) as DebtCompleteData[];
-            
-        setDebtList(parsedDebtList.filter(debt => debt.paid == false));
-        console.log(debtList)
+        setDebtList(parsedDebtList.filter(debt => debt.paid == false))
     }, [])
 
     const getAllDebtsFiltered = useCallback(() => {
-        let storedDebtList = localStorage.getItem('debtList');
-
-        if (storedDebtList == null) {
-            localStorage.setItem('debtList', JSON.stringify([]));
-            storedDebtList = '[]';
-        }
-
-        const parsedDebtList = JSON.parse(storedDebtList) as DebtCompleteData[];
-        const filteredDebtList = parsedDebtList.filter(debt => debt.name.includes(watchName) && debt.paid == false);
+        const parsedDebtList = fetchGetDebts()
+        const filteredDebtList = parsedDebtList.filter(debt => debt.name.includes(watchName) && debt.paid == false)
 
         setDebtList(filteredDebtList);
     }, [watchName])

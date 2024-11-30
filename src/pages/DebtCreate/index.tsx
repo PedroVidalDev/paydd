@@ -9,8 +9,11 @@ import { CreateDebtFormData } from "./types";
 import { REGEX } from "constants/regex";
 
 import { Container, ContainerButtons, ContainerInputs, ContainerTitle } from "./styles"
+import { useDebt } from "hooks/useDebt";
 
 export const DebtCreate = () => {
+
+    const { fetchCreateDebt } = useDebt()
 
     const navigate = useNavigate()
 
@@ -28,17 +31,7 @@ export const DebtCreate = () => {
     }
 
     const onSubmit = (data: CreateDebtFormData) => {
-        const actualDebtStorage = localStorage.getItem('debtList');
-
-        if (actualDebtStorage == null) {
-            localStorage.setItem('debtList', JSON.stringify([data]));
-        } else {
-            const jsonActualDebtStorage = JSON.parse(actualDebtStorage);
-            jsonActualDebtStorage.push(data);
-            localStorage.setItem('debtList', JSON.stringify(jsonActualDebtStorage));
-        }
-
-        navigate('/debt')
+        fetchCreateDebt(data)
     }
 
     return (

@@ -30,9 +30,26 @@ export const useCredit = () => {
 
         return JSON.parse(storedCreditList) as CreditCompleteData[];
     }
+    
+    const fetchGetUnpaidCredits = () => {
+        const storedCreditListParse = fetchGetCredits();
+        return storedCreditListParse.filter(credit => credit.paid === false);
+    }
+
+    const fetchGetPaidCredits = () => {
+        const storedCreditListParse = fetchGetCredits();
+        return storedCreditListParse.filter(credit => credit.paid);
+    }
+
+    const fetchGetUnpaidCreditsByName = (name: string) => {
+        const storedCreditListParse = fetchGetUnpaidCredits()
+        return storedCreditListParse.filter(credit => credit.name.includes(name))
+    }
 
     return {
         fetchCreateCredit,
-        fetchGetCredits
+        fetchGetPaidCredits,
+        fetchGetUnpaidCredits,
+        fetchGetUnpaidCreditsByName
     }
 }

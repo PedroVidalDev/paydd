@@ -14,7 +14,7 @@ import { useDebt } from "hooks/useDebt";
 
 export const Debt = () => {
 
-    const { fetchGetDebts } = useDebt()
+    const { fetchGetPaidDebts, fetchGetUnpaidDebts, fetchGetUnpaidDebtsByName } = useDebt()
 
     const [debtList, setDebtList] = useState<DebtCompleteData[]>([]);
     
@@ -29,14 +29,13 @@ export const Debt = () => {
     const watchName = watch('name');
 
     const getAllDebts = useCallback(() => {
-        const parsedDebtList = fetchGetDebts()
+        const parsedDebtList = fetchGetUnpaidDebts()
 
-        setDebtList(parsedDebtList.filter(debt => debt.paid == false))
+        setDebtList(parsedDebtList)
     }, [])
 
     const getAllDebtsFiltered = useCallback(() => {
-        const parsedDebtList = fetchGetDebts()
-        const filteredDebtList = parsedDebtList.filter(debt => debt.name.includes(watchName) && debt.paid == false)
+        const filteredDebtList = fetchGetUnpaidDebtsByName(watchName)
 
         setDebtList(filteredDebtList);
     }, [watchName])

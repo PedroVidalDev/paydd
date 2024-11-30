@@ -30,8 +30,25 @@ export const useDebt = () => {
         return JSON.parse(storedDebtList) as DebtCompleteData[];
     }
 
+    const fetchGetPaidDebts = () => {
+        const storedDebtListParse = fetchGetDebts()
+        return storedDebtListParse.filter(debt => debt.paid);
+    }
+
+    const fetchGetUnpaidDebts = () => {
+        const storedDebtListParse = fetchGetDebts()
+        return storedDebtListParse.filter(debt => debt.paid === false);
+    }
+
+    const fetchGetUnpaidDebtsByName = (name: string) => {
+        const storedDebtListParse = fetchGetUnpaidDebts()
+        return storedDebtListParse.filter(debt => debt.name.includes(name))
+    }
+
     return {
         fetchCreateDebt,
-        fetchGetDebts
+        fetchGetPaidDebts,
+        fetchGetUnpaidDebts,
+        fetchGetUnpaidDebtsByName
     }
 }

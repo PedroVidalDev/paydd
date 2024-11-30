@@ -16,7 +16,7 @@ import { useCredit } from "hooks/useCredit";
 
 export const Credit = () => {
 
-    const { fetchGetCredits, fetchCreateCredit } = useCredit()
+    const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetUnpaidCreditsByName } = useCredit()
 
     const [creditList, setCreditList] = useState<CreditCompleteData[]>([]);
     
@@ -31,13 +31,12 @@ export const Credit = () => {
     const watchName = watch('name');
     
     const getAllCredits = () => {
-        const parsedCreditList = fetchGetCredits()
-        setCreditList(parsedCreditList.filter(credit => credit.paid == false));
+        const parsedCreditList = fetchGetUnpaidCredits()
+        setCreditList(parsedCreditList);
     }
 
     const getAllCreditsFiltered = useCallback(() => {
-        const parsedCreditList = fetchGetCredits()
-        const filteredCreditList = parsedCreditList.filter(credit => credit.name.includes(watchName) && credit.paid == false);
+        const filteredCreditList = fetchGetUnpaidCreditsByName(watchName)
 
         setCreditList(filteredCreditList);
     }, [watchName])

@@ -88,7 +88,7 @@ export const Credit = () => {
                     )}
                 />
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
-                <Button onClick={handleChangeCreditPaidState} text="H" height={40} width={40} />
+                <Button onClick={handleChangeCreditPaidState} text={creditPaidState ? "P" : "H"} height={40} width={40} />
             </ContainerInputs>
             <RegisterContainer textsList={creditList as CreditCompleteData[]} />
         </Container>

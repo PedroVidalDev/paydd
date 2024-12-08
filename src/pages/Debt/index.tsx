@@ -90,7 +90,7 @@ export const Debt = () => {
                     )}
                 />                
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
-                <Button onClick={handleChangeDebtPaidState} text="H" height={40} width={40} />
+                <Button onClick={handleChangeDebtPaidState} text={debtPaidState ? "P" : "H"} height={40} width={40} />
             </ContainerInputs>
             <RegisterContainer textsList={debtList as DebtCompleteData[]} />
         </Container>

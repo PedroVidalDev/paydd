@@ -41,8 +41,8 @@ export const useCredit = () => {
         return storedCreditListParse.filter(credit => credit.paid);
     }
 
-    const fetchGetUnpaidCreditsByName = (name: string) => {
-        const storedCreditListParse = fetchGetUnpaidCredits()
+    const fetchGetCreditsByName = (name: string) => {
+        const storedCreditListParse = fetchGetCredits()
         return storedCreditListParse.filter(credit => credit.name.includes(name))
     }
 
@@ -50,6 +50,6 @@ export const useCredit = () => {
         fetchCreateCredit,
         fetchGetPaidCredits,
         fetchGetUnpaidCredits,
-        fetchGetUnpaidCreditsByName
+        fetchGetCreditsByName
     }
 }

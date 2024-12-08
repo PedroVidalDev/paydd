@@ -40,8 +40,8 @@ export const useDebt = () => {
         return storedDebtListParse.filter(debt => debt.paid === false);
     }
 
-    const fetchGetUnpaidDebtsByName = (name: string) => {
-        const storedDebtListParse = fetchGetUnpaidDebts()
+    const fetchGetDebtsByName = (name: string) => {
+        const storedDebtListParse = fetchGetDebts()
         return storedDebtListParse.filter(debt => debt.name.includes(name))
     }
 
@@ -49,6 +49,6 @@ export const useDebt = () => {
         fetchCreateDebt,
         fetchGetPaidDebts,
         fetchGetUnpaidDebts,
-        fetchGetUnpaidDebtsByName
+        fetchGetDebtsByName
     }
 }

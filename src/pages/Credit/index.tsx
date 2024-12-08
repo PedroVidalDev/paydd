@@ -16,9 +16,11 @@ import { useCredit } from "hooks/useCredit";
 
 export const Credit = () => {
 
-    const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetUnpaidCreditsByName } = useCredit()
+    const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetCreditsByName } = useCredit()
 
     const [creditList, setCreditList] = useState<CreditCompleteData[]>([]);
+
+    const [creditPaidState, setCreditPaidState] = useState<boolean>(false);
     
     const { control, watch, formState: {errors} } = useForm<SearchFilterData>({
         defaultValues: {
@@ -31,12 +33,12 @@ export const Credit = () => {
     const watchName = watch('name');
     
     const getAllCredits = () => {
-        const parsedCreditList = fetchGetUnpaidCredits()
-        setCreditList(parsedCreditList);
+        const parsedCreditList = creditPaidState ? fetchGetPaidCredits() : fetchGetUnpaidCredits()
+        setCreditList(parsedCreditList)
     }
 
     const getAllCreditsFiltered = useCallback(() => {
-        const filteredCreditList = fetchGetUnpaidCreditsByName(watchName)
+        const filteredCreditList = fetchGetCreditsByName(watchName)
 
         setCreditList(filteredCreditList);
     }, [watchName])
@@ -45,13 +47,17 @@ export const Credit = () => {
         navigate('/credit/new')
     }
 
+    const handleChangeCreditPaidState = () => {
+        setCreditPaidState(!creditPaidState)
+    }
+
     useEffect(() => {
         if(watchName) {
             getAllCreditsFiltered()
         } else {
             getAllCredits()
         }
-    }, [watchName, getAllCreditsFiltered, getAllCredits])
+    }, [watchName, getAllCreditsFiltered, getAllCredits, creditPaidState])
 
     useEffect(() => {
         getAllCredits()
@@ -82,7 +88,7 @@ export const Credit = () => {
                     )}
                 />
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
-                <Button text="H" height={40} width={40} />
+                <Button onClick={handleChangeCreditPaidState} text="H" height={40} width={40} />
             </ContainerInputs>
             <RegisterContainer textsList={creditList as CreditCompleteData[]} />
         </Container>

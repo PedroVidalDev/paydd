@@ -14,9 +14,11 @@ import { useDebt } from "hooks/useDebt";
 
 export const Debt = () => {
 
-    const { fetchGetPaidDebts, fetchGetUnpaidDebts, fetchGetUnpaidDebtsByName } = useDebt()
+    const { fetchGetPaidDebts, fetchGetUnpaidDebts, fetchGetDebtsByName } = useDebt()
 
     const [debtList, setDebtList] = useState<DebtCompleteData[]>([]);
+
+    const [debtPaidState, setDebtPaidState] = useState<boolean>(false);
     
     const navigate = useNavigate()
 
@@ -29,16 +31,20 @@ export const Debt = () => {
     const watchName = watch('name');
 
     const getAllDebts = useCallback(() => {
-        const parsedDebtList = fetchGetUnpaidDebts()
+        const parsedDebtList = debtPaidState ? fetchGetPaidDebts() : fetchGetUnpaidDebts()
 
         setDebtList(parsedDebtList)
     }, [])
 
     const getAllDebtsFiltered = useCallback(() => {
-        const filteredDebtList = fetchGetUnpaidDebtsByName(watchName)
+        const filteredDebtList = fetchGetDebtsByName(watchName)
 
         setDebtList(filteredDebtList);
     }, [watchName])
+
+    const handleChangeDebtPaidState = () => {
+        setDebtPaidState(!debtPaidState)
+    }
 
     const handleViewCreate = () => {
         navigate('/debt/new')
@@ -50,7 +56,7 @@ export const Debt = () => {
         } else {
             getAllDebts()
         }
-    }, [watchName, getAllDebtsFiltered, getAllDebts])
+    }, [watchName, getAllDebtsFiltered, getAllDebts, debtPaidState])
 
     useEffect(() => {
         getAllDebts()
@@ -81,7 +87,7 @@ export const Debt = () => {
                     )}
                 />                
                 <Button onClick={handleViewCreate} text="+" height={40} width={40}/>
-                <Button text="H" height={40} width={40} />
+                <Button onClick={handleChangeDebtPaidState} text="H" height={40} width={40} />
             </ContainerInputs>
             <RegisterContainer textsList={debtList as DebtCompleteData[]} />
         </Container>

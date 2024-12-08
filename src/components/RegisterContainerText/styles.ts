@@ -23,7 +23,11 @@ export const Container = styled.div`
 `
 
 export const ContainerText = styled.p`
+    display: flex;
     flex: 1;
+
+    align-items: center;
+    justify-content: center;
 
     font-size: ${({theme}) => theme.FONT_SIZE.NORMAL}px;
 

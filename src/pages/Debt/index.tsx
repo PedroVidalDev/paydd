@@ -30,11 +30,13 @@ export const Debt = () => {
 
     const watchName = watch('name');
 
-    const getAllDebts = useCallback(() => {
+    const getAllDebts = () => {
+        console.log("chegou no get all")
         const parsedDebtList = debtPaidState ? fetchGetPaidDebts() : fetchGetUnpaidDebts()
+        console.log(parsedDebtList)
 
         setDebtList(parsedDebtList)
-    }, [])
+    }
 
     const getAllDebtsFiltered = useCallback(() => {
         const filteredDebtList = fetchGetDebtsByName(watchName)
@@ -43,6 +45,7 @@ export const Debt = () => {
     }, [watchName])
 
     const handleChangeDebtPaidState = () => {
+        console.log("troacadoo")
         setDebtPaidState(!debtPaidState)
     }
 

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
-import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Controller, useForm } from "react-hook-form";
+import { useCallback, useEffect, useState } from "react";
 
 import { Input } from "components/Input";
 import { Button } from "components/Button";
@@ -10,17 +11,16 @@ import { REGEX } from "constants/regex";
 import { CreditCompleteData } from "dto/CreditDTO";
 
 import { SearchFilterData } from "./types";
-import { Container, ContainerInputs, ContainerTitle } from "./styles"
-import { get } from "http";
 import { useCredit } from "hooks/useCredit";
+import { Container, ContainerInputs, ContainerTitle } from "./styles"
 
 export const Credit = () => {
 
     const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetCreditsByName } = useCredit()
 
-    const [creditList, setCreditList] = useState<CreditCompleteData[]>([]);
+    const [creditList, setCreditList] = useState<CreditCompleteData[]>([])
 
-    const [creditPaidState, setCreditPaidState] = useState<boolean>(false);
+    const [creditPaidState, setCreditPaidState] = useState<boolean>(false)
     
     const { control, watch, formState: {errors} } = useForm<SearchFilterData>({
         defaultValues: {
@@ -30,7 +30,9 @@ export const Credit = () => {
     
     const navigate = useNavigate()
 
-    const watchName = watch('name');
+    const { t } = useTranslation()
+
+    const watchName = watch('name')
     
     const getAllCredits = () => {
         const parsedCreditList = creditPaidState ? fetchGetPaidCredits() : fetchGetUnpaidCredits()
@@ -65,16 +67,16 @@ export const Credit = () => {
 
     return (
         <Container>
-            <ContainerTitle> Créditos </ContainerTitle>
+            <ContainerTitle> {t('title.credit')} </ContainerTitle>
             <ContainerInputs>
                 <Controller 
                     control={control}
                     name="name"
                     rules={{
-                        required: "Campo necessário",    
+                        required: t('inputErrors.required'),    
                         pattern: {
                             value: REGEX.onlyString,
-                            message: "Campo deve ser um texto"
+                            message: t('inputErrors.text')
                         }
                     }}
                     render={({ field: {onChange, value} }) => (
@@ -83,7 +85,7 @@ export const Credit = () => {
                             errorMessage={errors?.name?.message}
                             onChange={onChange}
                             value={value}
-                            placeholder="Digite o nome aqui..."
+                            placeholder={t('placeholders.name')}
                         />
                     )}
                 />

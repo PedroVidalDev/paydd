@@ -43,7 +43,14 @@ export const RegisterContainerTexts = (props: RegisterContainerTextProps) => {
             <ContainerText> {props.textList.name} </ContainerText>
             <ContainerText> {props.textList.reason} </ContainerText>
             <ContainerText> R$ {props.textList.price} </ContainerText>
-            <Button text="Pago" height={40} width={130} onClick={handleLinePaid}/>
+            {
+                props.textList.paid ? 
+                <ContainerText>Pago</ContainerText> :
+                <ContainerText>
+                    <Button text="Pagar" height={40} width={130} onClick={handleLinePaid}/>
+                </ContainerText> 
+                
+            }
         </Container>
     )
 }

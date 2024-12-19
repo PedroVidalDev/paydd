@@ -2,5 +2,20 @@
     "title": {
         "debt": "Débitos",
         "credit": "Créditos"
+    },
+    "inputErrors": {
+        "required": "Campo obrigatório",
+        "invalid": "Campo inválido",
+        "text": "Campo deve ser texto",
+        "number": "Campo deve ser número"
+    },
+    "placeholders": {
+        "name": "Digite o nome aqui...",
+        "price": "Digite o preço aqui...",
+        "reason": "Digite o motivo aqui..."
+    },
+    "buttons": {
+        "save": "Salvar",
+        "cancel": "Cancelar"
     }
 }

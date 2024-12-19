@@ -10,12 +10,15 @@ import { REGEX } from "constants/regex";
 
 import { Container, ContainerButtons, ContainerInputs, ContainerTitle } from "./styles"
 import { useCredit } from "hooks/useCredit";
+import { useTranslation } from "react-i18next";
 
 export const CreditCreate = () => {
 
-    const { fetchCreateCredit } = useCredit()
-
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
+    
+    const { fetchCreateCredit } = useCredit()
 
     const { control, handleSubmit, formState: {errors} } = useForm<CreateCreditFormData>({
         defaultValues: {
@@ -36,16 +39,16 @@ export const CreditCreate = () => {
 
     return (
         <Container>
-            <ContainerTitle> Créditos </ContainerTitle>
+            <ContainerTitle> {t('title.credit')} </ContainerTitle>
             <ContainerInputs>
                 <Controller 
                     control={control}
                     name="name"
                     rules={{
-                        required: "Campo necessário",    
+                        required: t("inputErrors.required"),    
                         pattern: {
                             value: REGEX.onlyString,
-                            message: "Campo deve ser um texto"
+                            message: t("inputErrors.text")
                         }
                     }}
                     render={({ field: {onChange, value} }) => (
@@ -54,7 +57,7 @@ export const CreditCreate = () => {
                             value={value}
                             hasError={!!errors?.name}
                             errorMessage={errors?.name?.message}
-                            placeholder="Digite o nome aqui..." 
+                            placeholder={t('placeholders.name')}
                         />
                     )}
                 />
@@ -63,10 +66,10 @@ export const CreditCreate = () => {
                     control={control}
                     name="reason"
                     rules={{
-                        required: "Campo necessário",    
+                        required: t("inputErrors.required"),    
                         pattern: {
                             value: REGEX.onlyString,
-                            message: "Campo deve ser um texto"
+                            message: t("inputErrors.text")
                         }
                     }}
                     render={({ field: {onChange, value} }) => (
@@ -75,7 +78,7 @@ export const CreditCreate = () => {
                             onChange={onChange}
                             value={value}
                             errorMessage={errors?.reason?.message}
-                            placeholder="Digite o motivo aqui..." 
+                            placeholder={t('placeholders.reason')}
                         />
                     )}
                 />
@@ -84,10 +87,10 @@ export const CreditCreate = () => {
                     control={control}
                     name="price"
                     rules={{
-                        required: "Campo necessário",    
+                        required: t("inputErrors.required"),    
                         pattern: {
                             value: REGEX.onlyNumbers,
-                            message: "Campo deve ser um número"
+                            message: t("inputErrors.number")
                         }
                     }}
                     render={({ field: {onChange, value} }) => (
@@ -96,14 +99,14 @@ export const CreditCreate = () => {
                             onChange={onChange}
                             value={value}
                             errorMessage={errors?.price?.message}
-                            placeholder="Digite o preço aqui..." 
+                            placeholder={t('placeholders.price')}
                         />
                     )}
                 />
             </ContainerInputs>
             <ContainerButtons>
-                <Button onClick={handleCancel} text="Cancelar" height={50} width={140} />
-                <Button onClick={handleSubmit(onSubmit)} text="Salvar" height={50} width={140} />
+                <Button onClick={handleCancel} text={t('buttons.cancel')} height={50} width={140} />
+                <Button onClick={handleSubmit(onSubmit)} text={t('buttons.save')} height={50} width={140} />
             </ContainerButtons>
         </Container>
     )

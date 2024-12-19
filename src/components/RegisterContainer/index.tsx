@@ -6,8 +6,8 @@ export const RegisterContainer = (props: RegisterContainerProps) => {
     return (
         <Container>
             {
-                props.textsList.map((texts) => (
-                    <RegisterContainerTexts textList={texts} />
+                props.textsList.map((texts, index) => (
+                    <RegisterContainerTexts key={index} textList={texts} />
                 ))
             }
         </Container>

@@ -15,16 +15,16 @@ import { Container, ContainerInputs, ContainerTitle } from "./styles"
 
 export const Debt = () => {
 
-    const { fetchGetPaidDebts, fetchGetUnpaidDebts, fetchGetDebtsByName } = useDebt()
-
-    const [debtList, setDebtList] = useState<DebtCompleteData[]>([])
-
-    const [debtPaidState, setDebtPaidState] = useState<boolean>(false)
-    
     const navigate = useNavigate()
 
     const { t } = useTranslation()
+    
+    const [debtList, setDebtList] = useState<DebtCompleteData[]>([])
+    
+    const [debtPaidState, setDebtPaidState] = useState<boolean>(false)
 
+    const { fetchGetPaidDebts, fetchGetUnpaidDebts, fetchGetDebtsByName } = useDebt()
+    
     const { control, watch, formState: {errors} } = useForm<SearchFilterData>({
         defaultValues: {
             name: ''
@@ -33,12 +33,12 @@ export const Debt = () => {
 
     const watchName = watch('name');
 
-    const getAllDebts = () => {
+    const getAllDebts = useCallback(() => {
         const parsedDebtList = debtPaidState ? fetchGetPaidDebts() : fetchGetUnpaidDebts()
         console.log(parsedDebtList)
 
         setDebtList(parsedDebtList)
-    }
+    }, [debtPaidState])
 
     const getAllDebtsFiltered = useCallback(() => {
         const filteredDebtList = fetchGetDebtsByName(watchName)

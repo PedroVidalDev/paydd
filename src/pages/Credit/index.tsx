@@ -15,11 +15,12 @@ import { useCredit } from "hooks/useCredit";
 import { Container, ContainerInputs, ContainerTitle } from "./styles"
 
 export const Credit = () => {
-
-    const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetCreditsByName } = useCredit()
+    const navigate = useNavigate()
+    
+    const { t } = useTranslation()
 
     const [creditList, setCreditList] = useState<CreditCompleteData[]>([])
-
+    
     const [creditPaidState, setCreditPaidState] = useState<boolean>(false)
     
     const { control, watch, formState: {errors} } = useForm<SearchFilterData>({
@@ -28,16 +29,14 @@ export const Credit = () => {
         }
     })
     
-    const navigate = useNavigate()
-
-    const { t } = useTranslation()
-
+    const { fetchGetPaidCredits, fetchGetUnpaidCredits, fetchGetCreditsByName } = useCredit()
+    
     const watchName = watch('name')
     
-    const getAllCredits = () => {
+    const getAllCredits = useCallback(() => {
         const parsedCreditList = creditPaidState ? fetchGetPaidCredits() : fetchGetUnpaidCredits()
         setCreditList(parsedCreditList)
-    }
+    }, [creditPaidState])
 
     const getAllCreditsFiltered = useCallback(() => {
         const filteredCreditList = fetchGetCreditsByName(watchName)
@@ -55,8 +54,10 @@ export const Credit = () => {
 
     useEffect(() => {
         if(watchName) {
+            console.log("nome mudou")
             getAllCreditsFiltered()
         } else {
+            console.log("nome vazio")
             getAllCredits()
         }
     }, [watchName, getAllCreditsFiltered, getAllCredits, creditPaidState])

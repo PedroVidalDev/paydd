@@ -54,10 +54,8 @@ export const Credit = () => {
 
     useEffect(() => {
         if(watchName) {
-            console.log("nome mudou")
             getAllCreditsFiltered()
         } else {
-            console.log("nome vazio")
             getAllCredits()
         }
     }, [watchName, getAllCreditsFiltered, getAllCredits, creditPaidState])
